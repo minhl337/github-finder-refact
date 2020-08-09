@@ -78,6 +78,7 @@ class User extends Component {
                   target='_blank'
                   href={html_url}
                   className='btn btn-dark my-1'
+                  rel='noopener noreferrer'
                 >
                   Visit Github Profile
                 </a>
@@ -103,7 +104,11 @@ class User extends Component {
                     {blog && (
                       <>
                         <strong>Website: </strong>
-                        <a href={`https://${blog}`} target='_blank'>
+                        <a
+                          href={`https://${blog}`}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
                           {blog}
                         </a>
                       </>
