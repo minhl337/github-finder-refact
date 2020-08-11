@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 import Repos from '../repos/Repos';
 
-const User = ({ match, user, loading, repos, getUser, getRepos }) => {
+const User = ({ match, user, loading, repos, getInfo }) => {
   // componentDidMount() {
   //   this.props.getUser(this.props.match.params.login);
   //   this.props.getRepos(this.props.match.params.login);
   // }
   React.useEffect(() => {
-    getUser(match.params.login);
-    getRepos(match.params.login);
+    getInfo(match.params.login);
+    // getRepos(match.params.login);
     //eslint-disable-next-line
   }, []);
 
@@ -127,10 +127,9 @@ const User = ({ match, user, loading, repos, getUser, getRepos }) => {
 };
 
 User.propTypes = {
-  getUser: PropTypes.func.isRequired,
+  getInfo: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  getRepos: PropTypes.func.isRequired,
   repos: PropTypes.array.isRequired,
 };
 

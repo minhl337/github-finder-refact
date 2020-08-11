@@ -23,6 +23,11 @@ const Search = ({ searchUsers, setAlert, clearUsers, showClear }) => {
     }
   };
 
+  const clear = () => {
+    clearUsers();
+    setState({ text: '' });
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit} className='form'>
@@ -40,7 +45,7 @@ const Search = ({ searchUsers, setAlert, clearUsers, showClear }) => {
         />
       </form>
       {showClear && (
-        <button className='btn btn-light btn-block' onClick={clearUsers}>
+        <button className='btn btn-light btn-block' onClick={clear}>
           Clear
         </button>
       )}
