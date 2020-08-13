@@ -3,13 +3,7 @@ import axios from 'axios';
 import GithubContext from './githubContext';
 import GithubReducer from './githubReducer';
 
-import {
-  SEARCH_USERS,
-  SET_LOADING,
-  CLEAR_USERS,
-  GET_USER,
-  GET_REPOS,
-} from '../types';
+import { SEARCH_USERS, SET_LOADING, CLEAR_USERS, GET_INFO } from '../types';
 
 const GithubState = (props) => {
   const initialState = {
@@ -34,11 +28,31 @@ const GithubState = (props) => {
       payload: res.data.items,
     });
   };
-  // get user
-
-  // get repos
 
   // clear users
+  const clearUsers = () => {
+    dispatch({
+      type: CLEAR_USERS,
+    });
+  };
+
+  // get info
+  const getInfo = async (username) => {
+    setLoading();
+
+    const user = await axios.get(`https://api.github.com/users/${username}`);
+    const repos = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc`
+    );
+
+    dispatch({
+      type: GET_INFO,
+      payload: {
+        user: user.data,
+        repos: repos.data,
+      },
+    });
+  };
 
   // set loading
   const setLoading = () => dispatch({ type: SET_LOADING });
@@ -51,6 +65,8 @@ const GithubState = (props) => {
         repos: state.repos,
         loading: state.loading,
         searchUsers,
+        clearUsers,
+        getInfo,
       }}
     >
       {props.children}
