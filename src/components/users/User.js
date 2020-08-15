@@ -96,7 +96,7 @@ const User = ({ match }) => {
                     <>
                       <strong>Website: </strong>
                       <a
-                        href={`https://${blog}`}
+                        href={blog.includes('http') ? blog : `https://${blog}`}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
