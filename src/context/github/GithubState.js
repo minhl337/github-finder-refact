@@ -5,6 +5,14 @@ import GithubReducer from './githubReducer';
 
 import { SEARCH_USERS, SET_LOADING, CLEAR_USERS, GET_INFO } from '../types';
 
+let githubClientId;
+let githubClientSecret;
+
+if (process.env.NODE_ENV === 'production') {
+  githubClientId = process.env.GITHUB_CLIENT_ID;
+  githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
+}
+
 const GithubState = (props) => {
   const initialState = {
     users: [],
